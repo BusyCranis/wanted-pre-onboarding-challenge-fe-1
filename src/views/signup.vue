@@ -30,8 +30,7 @@
       <button type="submit" variant="primary">가입하기</button>
     </form>
 
- <button @click="goinfo">개발 진척 상황, 주식수 확인</button>
-
+    <button @click="goinfo">개발 진척 상황, 주식수 확인</button>
   </div>
 </template>
 
@@ -71,10 +70,10 @@ export default {
         console.log(err);
       }
 
-      this.form.email = ""
-      this.form.password = ""
-      this.form.name = ""
-      this.form.passwordConfirm = ""
+      this.form.email = "";
+      this.form.password = "";
+      this.form.name = "";
+      this.form.passwordConfirm = "";
 
       //   this.$router.push({ name: "linkedinfo" })
     },
