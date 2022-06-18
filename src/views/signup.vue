@@ -28,6 +28,8 @@
       <br />
       <br />
       <button type="submit" variant="primary">Sign Up</button>
+
+      <button @click="goinfo">개발 진척 상황, 주식수 확인</button>
     </form>
   </div>
 </template>
@@ -37,7 +39,6 @@ import axios from "axios";
 import { ValidationProvider } from "vee-validate";
 
 export default {
-  name: "Home",
   components: {
     ValidationProvider,
   },
@@ -55,7 +56,7 @@ export default {
     };
   },
 
- methods: {
+  methods: {
     async onSubmit() {
       try {
         await axios.post("http://localhost:5100/signup/account", {
@@ -63,9 +64,18 @@ export default {
           password: this.form.password,
           name: this.form.name,
         });
+
+        //  this.$router.push({ name: "linkedinfo" })
       } catch (err) {
         console.log(err);
       }
+
+      this.form.email = ""
+      this.form.password = ""
+      this.form.name = ""
+      this.form.passwordConfirm = ""
+
+      //   this.$router.push({ name: "linkedinfo" })
     },
 
     whileread() {
@@ -80,9 +90,9 @@ export default {
         });
     },
 
+    goinfo() {
+      this.$router.push({ name: "linkedinfo" });
+    },
   },
-
-
-
 };
 </script>

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Signup from '../views/signup.vue'
-// import profile from '../views/profile.vue'
+import LinkedInfo from '../views/linkedInfo.vue'
 // import login1 from '../views/loginpage.vue'
 // import createNFT from '../views/createNFT.vue'
 // import saleItemInfoPage from '../views/saleItemInfoPage.vue'
@@ -38,11 +38,11 @@ const routes = [
   },
 
 
-  // {
-  //   path: '/profile',
-  //   name: 'profile',
-  //   component: profile
-  // },
+  {
+    path: '/linkinfo',
+    name: 'linkedinfo',
+    component: LinkedInfo
+  },
 
   // {
   //   path: '/loginpage',
