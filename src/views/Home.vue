@@ -1,18 +1,64 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    회원 가입 약관
+    <br />
+    <br />
+
+    <button @click="agree">동의</button>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import axios from "axios";
+import { ValidationProvider } from "vee-validate";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
-    HelloWorld
-  }
-}
+    ValidationProvider,
+  },
+
+  data() {
+    return {
+      form: {
+        email: "",
+        password: "",
+        passwordConfirm: "",
+        name: "",
+      },
+
+      userlist: [],
+    };
+  },
+
+  methods: {
+    agree() {
+      this.$router.push({ name: "signup" });
+    },
+
+    async onSubmit() {
+      try {
+        await axios.post("http://localhost:5100/signup/account", {
+          email: this.form.email,
+          password: this.form.password,
+          name: this.form.name,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    },
+
+    whileread() {
+      axios
+        .get("http://localhost:5100/signup/account")
+        .then((r) => {
+          this.userlist = r.data.posts;
+          console.log(r.data.posts);
+        })
+        .catch((e) => {
+          console.error(e.message);
+        });
+    },
+  },
+};
 </script>
