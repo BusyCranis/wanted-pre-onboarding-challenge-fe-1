@@ -27,10 +27,11 @@
       </ValidationProvider>
       <br />
       <br />
-      <button type="submit" variant="primary">Sign Up</button>
-
-      <button @click="goinfo">개발 진척 상황, 주식수 확인</button>
+      <button type="submit" variant="primary">가입하기</button>
     </form>
+
+ <button @click="goinfo">개발 진척 상황, 주식수 확인</button>
+
   </div>
 </template>
 
