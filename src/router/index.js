@@ -3,8 +3,8 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Signup from '../views/signup.vue'
 import LinkedInfo from '../views/linkedInfo.vue'
-// import login1 from '../views/loginpage.vue'
-// import createNFT from '../views/createNFT.vue'
+import Login from '../views/loginformpage.vue'
+import Lawpage from '../views/lawagreepage.vue'
 // import saleItemInfoPage from '../views/saleItemInfoPage.vue'
 // import newstartTradepage from '../views/newstartTradepage.vue'
 
@@ -44,17 +44,17 @@ const routes = [
     component: LinkedInfo
   },
 
-  // {
-  //   path: '/loginpage',
-  //   name: 'loginpage',
-  //   component: login1
-  // },
+  {
+    path: '/law',
+    name: 'lawagree',
+    component: Lawpage
+  },
 
-  // {
-  //   path: '/createNFT',
-  //   name: 'createNFT',
-  //   component: createNFT
-  // },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
+  },
 
   // {
   //   path: '/saleItemInfoPage',

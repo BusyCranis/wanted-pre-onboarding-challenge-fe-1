@@ -1,14 +1,8 @@
 <template>
-  <div class="home">
-    회원 가입 페이지
-    <br />
-    <br />
+  <div>
+    로그인 페이지
+
     <form @submit.prevent="onSubmit">
-      <ValidationProvider name="Name" rules="required">
-        이름
-        <input v-model="form.name" type="text" required />
-        <!-- <FormErrorMessage :errors="errors" /> -->
-      </ValidationProvider>
       <br />
       <ValidationProvider name="Email" rules="required|email">
         이메일
@@ -20,23 +14,17 @@
         <input type="password" v-model="form.password" required />
       </ValidationProvider>
       <br />
-      <ValidationProvider name="Password Confirmation" rules="required|min:6">
-        비밀번호 확인
-        <input type="password" v-model="form.passwordConfirm" required />
-        <!-- <FormErrorMessage :errors="errors" /> -->
-      </ValidationProvider>
-      <br />
-      <br />
-      <button type="submit" variant="primary">가입하기</button>
-    </form>
 
-    <!-- <button @click="checklogin">개발 진척 상황, 주식수 확인</button> -->
+      <br />
+      <br />
+      <button type="submit" variant="primary">로그인</button>
+    </form>
   </div>
 </template>
-
 <script>
 import axios from "axios";
 import { ValidationProvider } from "vee-validate";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   components: {
@@ -57,25 +45,25 @@ export default {
   },
 
   methods: {
+    ...mapMutations(["loginsuccess"]),
+
     async onSubmit() {
       try {
-        await axios.post("http://localhost:5100/signup/account", {
-          email: this.form.email,
-          password: this.form.password,
-          name: this.form.name,
-        });
+        await axios
+          .get("http://localhost:5100/signup/account", {
+            email: this.form.email,
+            password: this.form.password,
+          })
+          .then((res) => {
+            console.log(res.data.info);
+            this.loginsuccess();
+            this.$router.push({ name: "linkedinfo" });
+          });
 
-        //  this.$router.push({ name: "linkedinfo" })
       } catch (err) {
         console.log(err);
       }
 
-      this.form.email = "";
-      this.form.password = "";
-      this.form.name = "";
-      this.form.passwordConfirm = "";
-
-      this.$router.push({ name: "login" });
     },
 
     whileread() {
@@ -90,9 +78,15 @@ export default {
         });
     },
 
-    checklogin() {
-      this.$router.push({ name: "linkedinfo" });
+    goinfo() {
+      if (this.$store.state.islogin === false)
+        this.$router.push({ name: "login" });
+      else {
+        this.$router.push({ name: "linkedinfo" });
+      }
     },
   },
 };
 </script>
+<style>
+</style>

@@ -1,10 +1,10 @@
 <template>
   <div class="home">
-    회원 가입 약관
+    <button @click="agree">회원 가입</button>
     <br />
+    <button @click="gologin">로그인</button>
     <br />
-
-    <button @click="agree">동의</button>
+    <button @click="checklogin">개발 진척 상황, 주식수 확인</button>
   </div>
 </template>
 
@@ -33,10 +33,20 @@ export default {
 
   methods: {
     agree() {
-      this.$router.push({ name: "signup" });
+      this.$router.push({ name: "lawagree" });
     },
 
-  
+    gologin() {
+      this.$router.push({ name: "login" });
+    },
+
+    checklogin() {
+      if (this.$store.state.islogin === false)
+        this.$router.push({ name: "login" });
+      else {
+        this.$router.push({ name: "linkedinfo" });
+      }
+    },
   },
 };
 </script>
