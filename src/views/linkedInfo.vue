@@ -3,14 +3,17 @@
     <a href="http://49.247.19.95"> 개발 진척 상황 확인하기 </a>
 
     <div>
-      주식수
+      <button @click="whileread">주식수 확인하기</button>
       <div v-for="item in userlist" :key="item.id">
-        {{ item.stock }}
+        {{ item.name }}
       </div>
     </div>
   </div>
 </template>
 <script>
+import axios from "axios";
+
+
 export default {
   data() {
     return {
@@ -21,7 +24,7 @@ export default {
   methods: {
     whileread() {
       axios
-        .get("http://localhost:5100/signup/account")
+        .get("http://localhost:5100/member/accounts")
         .then((res) => {
           this.userlist = res.data.posts;
           console.log(res.data.posts);
