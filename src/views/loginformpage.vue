@@ -2,7 +2,7 @@
   <div>
     로그인 페이지
 
-    <form @submit.prevent="onSubmit">
+    <form>
       <br />
       <ValidationProvider name="Email" rules="required|email">
         이메일
@@ -14,10 +14,9 @@
         <input type="password" v-model="form.password" required />
       </ValidationProvider>
       <br />
-
       <br />
       <br />
-      <button type="submit" variant="primary">로그인</button>
+      <v-btn @click="onmeet"> 로그인 </v-btn>
     </form>
   </div>
 </template>
@@ -47,7 +46,7 @@ export default {
   methods: {
     ...mapMutations(["loginsuccess"]),
 
-    async onSubmit() {
+    async onmeet() {
       try {
         await axios
           .get("http://localhost:5100/signup/account", {
@@ -59,11 +58,9 @@ export default {
             this.loginsuccess();
             this.$router.push({ name: "linkedinfo" });
           });
-
       } catch (err) {
         console.log(err);
       }
-
     },
 
     whileread() {

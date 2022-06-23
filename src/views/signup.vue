@@ -3,7 +3,7 @@
     회원 가입 페이지
     <br />
     <br />
-    <form @submit.prevent="onSubmit">
+    <form>
       <ValidationProvider name="Name" rules="required">
         이름
         <input v-model="form.name" type="text" required />
@@ -27,10 +27,8 @@
       </ValidationProvider>
       <br />
       <br />
-      <button type="submit" variant="primary">가입하기</button>
+      <v-btn @click="onSubmit"> 가입하기 </v-btn>
     </form>
-
-    <!-- <button @click="checklogin">개발 진척 상황, 주식수 확인</button> -->
   </div>
 </template>
 
@@ -65,7 +63,6 @@ export default {
           name: this.form.name,
         });
 
-        //  this.$router.push({ name: "linkedinfo" })
       } catch (err) {
         console.log(err);
       }
