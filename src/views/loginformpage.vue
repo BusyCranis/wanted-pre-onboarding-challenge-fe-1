@@ -1,23 +1,41 @@
 <template>
   <div>
-    로그인 페이지
+    로그인
 
-    <form>
-      <br />
-      <ValidationProvider name="Email" rules="required|email">
-        이메일
-        <input v-model="form.email" type="email" required />
-      </ValidationProvider>
-      <br />
-      <ValidationProvider name="Password" rules="required|min:6">
-        비밀번호
-        <input type="password" v-model="form.password" required />
-      </ValidationProvider>
-      <br />
-      <br />
-      <br />
-      <v-btn @click="onmeet"> 로그인 </v-btn>
-    </form>
+    <br />
+    <!-- <ValidationProvider name="Email" rules="required|email"> -->
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.email"
+          type="text"
+          placeholder="이메일"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <!-- </ValidationProvider> -->
+
+    <!-- <ValidationProvider name="Password" rules="required|min:6"> -->
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.password"
+          type="text"
+          placeholder="비밀번호"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <!-- </ValidationProvider> -->
+    <br />
+    <br />
+    <br />
+    <v-btn @click="onmeet"> 로그인 </v-btn>
   </div>
 </template>
 <script>

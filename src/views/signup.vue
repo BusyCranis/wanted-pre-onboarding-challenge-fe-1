@@ -1,34 +1,63 @@
 <template>
   <div class="home">
-    회원 가입 페이지
+    회원 가입
     <br />
     <br />
-    <form>
-      <ValidationProvider name="Name" rules="required">
-        이름
-        <input v-model="form.name" type="text" required />
-        <!-- <FormErrorMessage :errors="errors" /> -->
-      </ValidationProvider>
-      <br />
-      <ValidationProvider name="Email" rules="required|email">
-        이메일
-        <input v-model="form.email" type="email" required />
-      </ValidationProvider>
-      <br />
-      <ValidationProvider name="Password" rules="required|min:6">
-        비밀번호
-        <input type="password" v-model="form.password" required />
-      </ValidationProvider>
-      <br />
-      <ValidationProvider name="Password Confirmation" rules="required|min:6">
-        비밀번호 확인
-        <input type="password" v-model="form.passwordConfirm" required />
-        <!-- <FormErrorMessage :errors="errors" /> -->
-      </ValidationProvider>
-      <br />
-      <br />
-      <v-btn @click="onSubmit"> 가입하기 </v-btn>
-    </form>
+    <!-- <ValidationProvider name="Name" rules="required"> -->
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.name"
+          type="text"
+          placeholder="이름"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <!-- </ValidationProvider> -->
+    <!-- <ValidationProvider name="Email" rules="required|email"> -->
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0 hide-details">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0"
+          v-model="form.email"
+          type="text"
+          placeholder="이메일"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <!-- </ValidationProvider> -->
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.password"
+          type="text"
+          placeholder="비밀번호"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.passwordConfirm"
+          type="text"
+          placeholder="비밀번호 확인"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <br />
+    <br />
+    <v-btn @click="onSubmit"> 가입하기 </v-btn>
   </div>
 </template>
 
@@ -62,7 +91,6 @@ export default {
           password: this.form.password,
           name: this.form.name,
         });
-
       } catch (err) {
         console.log(err);
       }
@@ -93,3 +121,20 @@ export default {
   },
 };
 </script>
+<style>
+.setinput {
+  width: 200px;
+}
+
+.include {
+  display: flex;
+  justify-content: center;
+  width: 200px;
+}
+
+.rule {
+  display: flex;
+
+  justify-content: center;
+}
+</style>
