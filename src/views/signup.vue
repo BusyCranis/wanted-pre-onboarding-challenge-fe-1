@@ -105,7 +105,7 @@ export default {
 
     whileread() {
       axios
-        .get("https://49.247.26.149:5100/signup/account")
+        .get("http://49.247.26.149:5100/signup/account")
         .then((r) => {
           this.userlist = r.data.posts;
           console.log(r.data.posts);
