@@ -67,7 +67,7 @@ export default {
     async onmeet() {
       try {
         await axios
-          .get("http://49.247.26.149:5100/signup/account", {
+          .get("/signup/account", {
             email: this.form.email,
             password: this.form.password,
           })
@@ -83,7 +83,7 @@ export default {
 
     whileread() {
       axios
-        .get("http://49.247.26.149:5100/signup/account")
+        .get("/signup/account")
         .then((r) => {
           this.userlist = r.data.posts;
           console.log(r.data.posts);
