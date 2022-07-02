@@ -26,7 +26,7 @@ export default {
   methods: {
     whileread() {
       axios
-        .get("http://49.247.26.149:5100/member/accounts")
+        .get("/member/accounts")
         .then((res) => {
           this.userlist = res.data.posts;
           console.log(res.data.posts);
