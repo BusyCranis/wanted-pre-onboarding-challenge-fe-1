@@ -77,6 +77,9 @@ export default {
         password: "",
         passwordConfirm: "",
         name: "",
+        firaddress: "",
+        secaddress: "",
+        thraddress: ""
       },
 
       userlist: [],
@@ -90,6 +93,9 @@ export default {
           email: this.form.email,
           password: this.form.password,
           name: this.form.name,
+          firaddress: this.form.firaddress,
+          secaddress: this.form.secaddress,
+          thraddress: this.form.thraddress,
         });
       } catch (err) {
         console.log(err);
