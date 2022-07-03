@@ -89,7 +89,7 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        await axios.post("http://localhost:5100/signup/account", {
+        await axios.post("http://49.247.26.149:5100/signup/account", {
           email: this.form.email,
           password: this.form.password,
           name: this.form.name,
