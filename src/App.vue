@@ -7,6 +7,38 @@
     <router-view/>
   </div>
 </template>
+<script>
+// import { defineComponent } from '@vue/composition-api'
+
+export default {
+
+  data() {},
+
+
+  method: {
+
+    anyfunc() {
+      
+
+
+
+
+
+    }
+
+
+
+
+
+
+  }
+
+
+
+
+}
+
+</script>
 
 
 

@@ -55,6 +55,42 @@
         </v-text-field>
       </div>
     </div>
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.firaddress"
+          type="text"
+          placeholder="주소(시,도 단위)"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.secaddress"
+          type="text"
+          placeholder="주소(군,구 단위)"
+        >
+        </v-text-field>
+      </div>
+    </div>
+    <div class="rule pa-0 ma-0">
+      <div class="include justify-center pa-0 ma-0">
+        <v-text-field
+          hide-details
+          class="setinput pa-0 ma-0 hide-details"
+          v-model="form.thraddress"
+          type="text"
+          placeholder="주소(읍,면,동 단위)"
+        >
+        </v-text-field>
+      </div>
+    </div>
     <br />
     <br />
     <v-btn @click="onSubmit"> 가입하기 </v-btn>
@@ -89,7 +125,7 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        await axios.post("/signup/account", {
+        await axios.post("http://localhost:5100/signup/account", {
           email: this.form.email,
           password: this.form.password,
           name: this.form.name,

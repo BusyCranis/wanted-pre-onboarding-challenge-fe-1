@@ -47,7 +47,7 @@ export default {
 
     checklogin() {
       if (this.$store.state.islogin === false)
-        this.$router.push({ name: "login" });
+        this.$router.push({ name: "linkedinfo" });
       else {
         this.$router.push({ name: "linkedinfo" });
       }
