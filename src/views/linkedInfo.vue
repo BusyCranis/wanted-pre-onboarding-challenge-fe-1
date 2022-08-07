@@ -1,7 +1,5 @@
 <template>
   <div>
-  
-
     <br /><br />
 
     <!-- <v-text-field v-model="getreq"></v-text-field> -->
@@ -19,7 +17,8 @@
 
       <div v-for="item in userlist" :key="item.id">
         <div>
-          {{ item }}   <v-btn  @click="updateinfo(item.id)" >  수정하기  </v-btn>
+          {{ item.title }} {{ item.content }}
+          <v-btn @click="updateinfo(item.id)"> 수정하기 </v-btn>
         </div>
       </div>
     </div>
