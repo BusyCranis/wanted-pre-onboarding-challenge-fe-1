@@ -7,19 +7,19 @@
     <!-- <v-text-field v-model="getreq"></v-text-field> -->
 
     <div>
-      <v-btn @click="whileread">주식수 확인하기</v-btn>
+      <v-btn @click="whileread"> 나의 할일 확인하기</v-btn>
 
       <v-text-field v-model="time0"></v-text-field>
 
-      <v-btn @click="onpost"> 생성 </v-btn>
+      <v-btn @click="onpost"> 할일 추가하기 </v-btn>
 
       <br />
 
       <v-text-field v-model="time1"></v-text-field>
 
       <div v-for="item in userlist" :key="item.id">
-        <div @click="updateinfo(item.id)">
-          {{ item }}
+        <div>
+          {{ item }}   <v-btn  @click="updateinfo(item.id)" >  수정하기  </v-btn>
         </div>
       </div>
     </div>

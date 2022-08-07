@@ -8,7 +8,7 @@
     <v-btn id="frontpage" @click="gologin">로그인</v-btn>
     <br /><br />
     <v-btn id="frontpage" @click="checklogin"
-      >개발 진척 상황, 주식수 확인</v-btn
+      > 나의 할일 목록 보러 가기 </v-btn
     >
   </div>
 </template>
