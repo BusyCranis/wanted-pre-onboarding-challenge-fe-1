@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    Nanushare에 오신 것을 환영합니다.
+    "..."에 오신 것을 환영합니다.
     <br />
     <br /><br />
     <v-btn id="frontpage" @click="agree">회원 가입</v-btn>
