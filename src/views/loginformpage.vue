@@ -63,17 +63,22 @@ export default {
 
   methods: {
     ...mapMutations(["loginsuccess"]),
+    ...mapMutations(["getuser"]),
 
     async onmeet() {
       try {
         await axios
-          .post("http://localhost:5100/post/method", {
+          .post("http://localhost:5300/users/login", {
             email: this.form.email,
             password: this.form.password,
           })
           .then((res) => {
-            console.log(res.data.info);
+            console.log(res.data.rootid);
+            console.log(res.data.message);
             this.loginsuccess();
+
+            this.getuser(res.data.rootid)
+
             this.$router.push({ name: "linkedinfo" });
           });
       } catch (err) {
@@ -101,6 +106,20 @@ export default {
       }
     },
   },
+
+  computed: {
+    ...mapState(["islogin"]),
+
+    ...mapState(["usersId"]),
+
+    ...mapState(["tradeditem"]),
+    ...mapState(["boughtinfo"]),
+    ...mapState(["soldinfo"]),
+    ...mapState(["vrcp"]),
+
+  
+  },
+
 };
 </script>
 <style>

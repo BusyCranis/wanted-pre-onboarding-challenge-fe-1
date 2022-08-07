@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations } from "vuex";
 // import axios from "axios";
 import { ValidationProvider } from "vee-validate";
 
@@ -47,7 +48,7 @@ export default {
 
     checklogin() {
       if (this.$store.state.islogin === false)
-        this.$router.push({ name: "linkedinfo" });
+        this.$router.push({ name: "login" });
       else {
         this.$router.push({ name: "linkedinfo" });
       }

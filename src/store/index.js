@@ -6,7 +6,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
 
-    islogin: false
+    islogin: false,
+
+    usersId: null
 
 
 
@@ -16,6 +18,12 @@ export default new Vuex.Store({
     loginsuccess(state) {
       state.islogin = true
     },
+
+    getuser(state, payload) {
+
+      state.usersId = payload
+
+    }
 
 
 

@@ -1,22 +1,30 @@
 <template>
   <div>
-    <a href="http://49.247.19.95"> 개발 진척 상황 확인하기 </a>
+  
 
     <br /><br />
 
+    <!-- <v-text-field v-model="getreq"></v-text-field> -->
+
     <div>
       <v-btn @click="whileread">주식수 확인하기</v-btn>
-      <div v-for="item in userlist" :key="item._id">
-        <div @click="updateinfo(item._id)">
+
+      <v-text-field v-model="time0"></v-text-field>
+
+      <v-btn @click="onpost"> 생성 </v-btn>
+
+      <br />
+
+      <v-text-field v-model="time1"></v-text-field>
+
+      <div v-for="item in userlist" :key="item.id">
+        <div @click="updateinfo(item.id)">
           {{ item }}
         </div>
       </div>
     </div>
 
-<div @click="request0" >
-  아무거나 요청하기
-</div>
-
+    <!-- <div @click="request0">아무거나 요청하기</div> -->
 
     <div class="rule pa-0 ma-0">
       <div class="include justify-center pa-0 ma-0">
@@ -30,8 +38,7 @@
         </v-text-field>
       </div>
     </div>
-    <!-- </ValidationProvider> -->
-    <!-- <ValidationProvider name="Email" rules="required|email"> -->
+
     <div class="rule pa-0 ma-0">
       <div class="include justify-center pa-0 ma-0 hide-details">
         <v-text-field
@@ -44,7 +51,7 @@
         </v-text-field>
       </div>
     </div>
-    <!-- </ValidationProvider> -->
+
     <div class="rule pa-0 ma-0">
       <div class="include justify-center pa-0 ma-0">
         <v-text-field
@@ -108,11 +115,18 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions, mapMutations } from "vuex";
 import axios from "axios";
 
 export default {
   data() {
     return {
+      getreq: null,
+
+      time0: null,
+
+      time1: null,
+
       form: {
         email: "",
         password: "",
@@ -128,47 +142,73 @@ export default {
   },
 
   methods: {
+    async onpost() {
+      console.log(this.$store.state.usersId);
+
+      try {
+        await axios.post("http://localhost:5300/todos", {
+          title: this.time0,
+          content: this.time0,
+          rootid: this.$store.state.usersId,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+
+      // this.form.email = "";
+      // this.form.password = "";
+    },
+
     whileread() {
       axios
-        .get("http://localhost:5100/member/accounts")
+        .get(
+          "http://localhost:5300/todos/" + this.$store.state.usersId
+          // {
+          //   params: { cranis2: "cranis2" },
+          // }
+        )
         .then((res) => {
-          this.userlist = res.data.posts;
-          console.log(res.data);
+          this.userlist = res.data.data;
+          console.log(res.data.data);
         })
         .catch((e) => {
           console.error(e.message);
         });
     },
 
-    updateinfo(_id) {
-      let myid = _id;
+    updateinfo(id) {
+      let myid = id;
       console.log(myid);
 
       axios
-        .post("http://localhost:5100/update/list", {
-          yourid: myid,
-          name: this.form.name,
+        .post("http://localhost:5300/todos/update", {
+          id: myid,
+          title: this.time1,
+          content: this.time1,
         })
         .then((res) => {
           console.log(res.data);
         });
     },
 
-  request0() {
+    request0() {
+      axios
+        .post("http://localhost:5100/property/request", {
+          email: "cranis@naver.com",
+        })
+        .then((res) => console.log(res.data.yourpost));
+    },
+  },
 
-    axios.post("http://localhost:5100/property/request", { 
+  computed: {
+    ...mapState(["islogin"]),
 
-      email: "cranis@naver.com"
+    ...mapState(["usersId"]),
 
-     }).then((res) => console.log(res.data.yourpost))
-
-
-
-  }
-
-
-
-
+    ...mapState(["tradeditem"]),
+    ...mapState(["boughtinfo"]),
+    ...mapState(["soldinfo"]),
+    ...mapState(["vrcp"]),
   },
 };
 </script>

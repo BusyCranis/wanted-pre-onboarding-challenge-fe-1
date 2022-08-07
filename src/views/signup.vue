@@ -3,8 +3,8 @@
     회원 가입
     <br />
     <br />
-    <!-- <ValidationProvider name="Name" rules="required"> -->
-    <div class="rule pa-0 ma-0">
+
+    <!-- <div class="rule pa-0 ma-0">
       <div class="include justify-center pa-0 ma-0">
         <v-text-field
           hide-details
@@ -15,9 +15,8 @@
         >
         </v-text-field>
       </div>
-    </div>
-    <!-- </ValidationProvider> -->
-    <!-- <ValidationProvider name="Email" rules="required|email"> -->
+    </div> -->
+  
     <div class="rule pa-0 ma-0">
       <div class="include justify-center pa-0 ma-0 hide-details">
         <v-text-field
@@ -30,7 +29,7 @@
         </v-text-field>
       </div>
     </div>
-    <!-- </ValidationProvider> -->
+ 
     <div class="rule pa-0 ma-0">
       <div class="include justify-center pa-0 ma-0">
         <v-text-field
@@ -43,7 +42,7 @@
         </v-text-field>
       </div>
     </div>
-    <div class="rule pa-0 ma-0">
+    <!-- <div class="rule pa-0 ma-0">
       <div class="include justify-center pa-0 ma-0">
         <v-text-field
           hide-details
@@ -90,7 +89,7 @@
         >
         </v-text-field>
       </div>
-    </div>
+    </div> -->
     <br />
     <br />
     <v-btn @click="onSubmit"> 가입하기 </v-btn>
@@ -98,6 +97,7 @@
 </template>
 
 <script>
+import { mapState, mapActions, mapMutations } from "vuex";
 import axios from "axios";
 import { ValidationProvider } from "vee-validate";
 
@@ -125,22 +125,18 @@ export default {
   methods: {
     async onSubmit() {
       try {
-        await axios.post("http://localhost:5100/signup/account", {
+        await axios.post("http://localhost:5300/users/create", {
           email: this.form.email,
           password: this.form.password,
-          name: this.form.name,
-          firaddress: this.form.firaddress,
-          secaddress: this.form.secaddress,
-          thraddress: this.form.thraddress,
+     
         });
       } catch (err) {
         console.log(err);
       }
 
-      this.form.email = "";
-      this.form.password = "";
-      this.form.name = "";
-      this.form.passwordConfirm = "";
+      // this.form.email = "";
+      // this.form.password = "";
+
 
       this.$router.push({ name: "login" });
     },
