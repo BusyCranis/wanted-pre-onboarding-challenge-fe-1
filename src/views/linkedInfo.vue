@@ -17,7 +17,8 @@
 
       <div v-for="item in userlist" :key="item.id">
         <div>
-          {{ item.title }} {{ item.content }}
+        제목:  {{ item.title }} 
+        내용:  {{ item.content }}
           <v-btn @click="updateinfo(item.id)"> 수정하기 </v-btn>
         </div>
       </div>
