@@ -7,9 +7,13 @@
     <div>
       <v-btn @click="whileread"> 나의 할일 확인하기</v-btn>
 
+      <v-btn @click="ontoread"> mongoDB 확인하기</v-btn>
+
       <v-text-field v-model="time0"></v-text-field>
 
       <v-btn @click="onpost"> 할일 추가하기 </v-btn>
+
+       <v-btn @click="inpost"> mongoDB </v-btn>
 
       <br />
 
@@ -155,17 +159,41 @@ export default {
         console.log(err);
       }
 
-      // this.form.email = "";
-      // this.form.password = "";
+    },
+
+    async inpost() {
+      console.log(this.$store.state.usersId);
+
+      try {
+        await axios.post("http://localhost:5100/root/post", {
+          title: this.time0,
+          content: this.time0,
+          // rootid: this.$store.state.usersId,
+        });
+      } catch (err) {
+        console.log(err);
+      }
+
     },
 
     whileread() {
       axios
         .get(
           "http://localhost:5300/todos/" + this.$store.state.usersId
-          // {
-          //   params: { cranis2: "cranis2" },
-          // }
+        )
+        .then((res) => {
+          this.userlist = res.data.data;
+          console.log(res.data.data);
+        })
+        .catch((e) => {
+          console.error(e.message);
+        });
+    },
+
+    ontoread() {
+      axios
+        .get(
+          "http://localhost:5100/member/accounts"
         )
         .then((res) => {
           this.userlist = res.data.data;
